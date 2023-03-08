@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,8 +17,18 @@ public class Goal {
     private int id;
     private String name;
     private String type;
-    @Temporal(TemporalType.DATE)
-    private Calendar enddate;
+    private LocalDate enddate;
     private Boolean achieved;
+
+    //RelationShips
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
+    @ManyToMany
+    private Set<Workout> workouts;
+    @ManyToMany
+    private Set<Program> programs;
+
 
 }
