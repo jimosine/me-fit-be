@@ -15,6 +15,7 @@ public class Workout {
     private int id;
     private String name;
     private String type;
+    @Column(columnDefinition = "boolean default false")
     private Boolean completed;
 
     //RelationShips

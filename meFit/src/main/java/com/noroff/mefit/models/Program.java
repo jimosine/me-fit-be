@@ -16,6 +16,7 @@ public class Program {
 
     private String name;
     private String type;
+    @Column(columnDefinition = "boolean default false")
     private Boolean completed;
 
     //RelationShips
