@@ -19,6 +19,7 @@ public class Exercise {
     private String musclegroup;
     private String vidlink;
     private Integer repetitions;
+    @Column(columnDefinition = "boolean default false")
     private Boolean compleded;
 
     //RelationShips

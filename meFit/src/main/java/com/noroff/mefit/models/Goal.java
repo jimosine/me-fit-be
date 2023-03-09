@@ -18,6 +18,7 @@ public class Goal {
     private String name;
     private String type;
     private LocalDate enddate;
+    @Column(columnDefinition = "boolean default false")
     private Boolean achieved;
 
     //RelationShips
