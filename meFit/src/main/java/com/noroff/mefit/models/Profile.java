@@ -1,11 +1,10 @@
 package com.noroff.mefit.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,4 +15,13 @@ public class Profile {
     private int id;
     private String firstname;
     private String lastname;
+
+    //RelationShips
+    @OneToOne()
+    @JoinColumn(name = "users_id")
+    private Users users;
+
+    @OneToMany(mappedBy = "profile")
+    private Set<Goal> goals;
+
 }

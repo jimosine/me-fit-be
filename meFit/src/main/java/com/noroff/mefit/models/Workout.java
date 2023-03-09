@@ -1,11 +1,10 @@
 package com.noroff.mefit.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,4 +16,12 @@ public class Workout {
     private String name;
     private String type;
     private Boolean completed;
+
+    //RelationShips
+    @ManyToMany(mappedBy = "workouts")
+    private Set<Goal> goals;
+    @ManyToMany(mappedBy = "workouts")
+    private Set<Program> programs;
+    @ManyToMany()
+    private Set<Exercise> exercises;
 }
