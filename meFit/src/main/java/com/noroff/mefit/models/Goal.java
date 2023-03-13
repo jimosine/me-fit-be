@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -18,8 +18,8 @@ public class Goal {
     private String name;
     private String type;
     private LocalDate enddate;
-    @Column(columnDefinition = "boolean default false")
-    private Boolean achieved;
+    @Column(columnDefinition = "boolean default false" )
+    private Boolean achieved = false;
 
     //RelationShips
     @ManyToOne
