@@ -16,7 +16,7 @@ public class Workout {
     private String name;
     private String type;
     @Column(columnDefinition = "boolean default false")
-    private Boolean completed;
+    private Boolean completed = false;
 
     //RelationShips
     @ManyToMany(mappedBy = "workouts")
