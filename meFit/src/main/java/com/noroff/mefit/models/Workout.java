@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,5 +25,5 @@ public class Workout {
     @ManyToMany(mappedBy = "workouts")
     private Set<Program> programs;
     @ManyToMany()
-    private Set<Exercise> exercises;
+    private List<Exercise> exercises;
 }

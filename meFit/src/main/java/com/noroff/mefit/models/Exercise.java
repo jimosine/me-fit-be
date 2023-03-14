@@ -23,7 +23,7 @@ public class Exercise {
     private Boolean compleded;
 
     //RelationShips
-    @ManyToMany(mappedBy = "exercises")
-    private Set<Workout> workouts;
+//    @ManyToMany(mappedBy = "exercises",fetch = FetchType.LAZY)
+//    private Set<Workout> workouts;
 
 }

@@ -9,10 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -64,7 +61,7 @@ public class WorkoutServiceImpl implements WorkoutService{
     @Override
     public void addExercises(int workoutId, List<Integer> exerciseIds) {
         Workout workout = workoutRepository.findById(workoutId).orElseThrow(()-> new EntityNotFoundException("could not find workout"));
-        Set<Exercise> newExercises= new HashSet<>();
+        List<Exercise> newExercises= new ArrayList();
 
         for (Integer exerciseId: exerciseIds){
             Exercise exercise =exerciseService.findById(exerciseId);
