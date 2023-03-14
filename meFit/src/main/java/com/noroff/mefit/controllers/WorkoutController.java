@@ -49,7 +49,7 @@ public class WorkoutController {
     }
 
     @PutMapping("/{id}/exercise")
-    public ResponseEntity updateExercise(@PathVariable int id, ExerciseToWorkoutDTO exerciseToWorkoutDTO){
+    public ResponseEntity updateExercise(@PathVariable int id, @RequestBody ExerciseToWorkoutDTO exerciseToWorkoutDTO){
         workoutService.addExercises(id, exerciseToWorkoutDTO.getExerciseIds());
         return ResponseEntity.noContent().build();
     }
