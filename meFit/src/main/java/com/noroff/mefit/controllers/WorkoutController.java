@@ -1,5 +1,6 @@
 package com.noroff.mefit.controllers;
 
+import com.noroff.mefit.models.DTO.workout.ExerciseToWorkoutDTO;
 import com.noroff.mefit.models.DTO.workout.WorkoutPostDPO;
 import com.noroff.mefit.models.Workout;
 import com.noroff.mefit.services.workout.WorkoutService;
@@ -18,6 +19,7 @@ public class WorkoutController {
 
     public WorkoutController(WorkoutService workoutService) {
         this.workoutService = workoutService;
+
         mapper =new ModelMapper();
     }
 
@@ -39,11 +41,16 @@ public class WorkoutController {
         URI uri = new URI("workout/" + entity);
         return ResponseEntity.created(uri).build();
     }
-
     @PutMapping("{id}")
     public ResponseEntity updateWorkout(@RequestBody Workout workout, @PathVariable int id){
         workout.setId(id);
         workoutService.update(workout);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/exercise")
+    public ResponseEntity updateExercise(@PathVariable int id, ExerciseToWorkoutDTO exerciseToWorkoutDTO){
+        workoutService.addExercises(id, exerciseToWorkoutDTO.getExerciseIds());
         return ResponseEntity.noContent().build();
     }
 }
