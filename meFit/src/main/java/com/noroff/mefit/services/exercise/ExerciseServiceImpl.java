@@ -1,8 +1,8 @@
 package com.noroff.mefit.services.exercise;
 
 import com.noroff.mefit.models.Exercise;
-import com.noroff.mefit.repositories.ExcerciseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.noroff.mefit.repositories.ExerciseRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,34 +10,34 @@ import java.util.Collection;
 @Service
 public class ExerciseServiceImpl implements ExerciseService{
 
-    private final ExcerciseRepository excerciseRepository;
+    private final ExerciseRepository exerciseRepository;
 
-    public ExerciseServiceImpl(ExcerciseRepository excerciseRepository) {
-        this.excerciseRepository = excerciseRepository;
+    public ExerciseServiceImpl(ExerciseRepository exerciseRepository) {
+        this.exerciseRepository = exerciseRepository;
     }
 
     @Override
     public Exercise findById(Integer id) {
-        return excerciseRepository.findById(id).get();
+        return exerciseRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Exercise not found"));
     }
 
     @Override
     public Collection<Exercise> findAll() {
-        return excerciseRepository.findAll();
+        return exerciseRepository.findAll();
     }
 
     @Override
     public Exercise add(Exercise entity) {
-        return excerciseRepository.save(entity);
+        return exerciseRepository.save(entity);
     }
 
     @Override
     public Exercise update(Exercise entity) {
-        return excerciseRepository.save(entity);
+        return exerciseRepository.save(entity);
     }
 
     @Override
     public void deleteById(Integer id) {
-        excerciseRepository.deleteById(id);
+        exerciseRepository.deleteById(id);
     }
 }
