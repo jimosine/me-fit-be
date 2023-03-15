@@ -19,7 +19,7 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    @GetMapping({"id"})
+    @GetMapping({"{id}"})
     public ResponseEntity findById(@PathVariable int id){
 
         return ResponseEntity.ok(profileService.findById(id));
