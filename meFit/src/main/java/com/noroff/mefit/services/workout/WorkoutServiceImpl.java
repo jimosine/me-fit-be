@@ -65,7 +65,6 @@ public class WorkoutServiceImpl implements WorkoutService{
     public void addExercises(int workoutId, List<Integer> exerciseIds) {
         Workout workout = workoutRepository.findById(workoutId).orElseThrow(()-> new EntityNotFoundException("could not find workout"));
         Set<Exercise> newExercises= new HashSet<>();
-
         for (Integer exerciseId: exerciseIds){
             Exercise exercise =exerciseService.findById(exerciseId);
             newExercises.add(exercise);

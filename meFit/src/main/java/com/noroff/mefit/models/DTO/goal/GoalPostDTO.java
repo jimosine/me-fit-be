@@ -11,4 +11,5 @@ public class GoalPostDTO {
     private String name;
     private String type;
     private LocalDate enddate;
+    private Integer profileId;
 }
