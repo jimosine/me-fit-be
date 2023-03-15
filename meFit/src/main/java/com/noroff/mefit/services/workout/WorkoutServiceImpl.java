@@ -6,11 +6,11 @@ import com.noroff.mefit.repositories.ExerciseRepository;
 import com.noroff.mefit.repositories.WorkoutRepository;
 import com.noroff.mefit.services.exercise.ExerciseService;
 import jakarta.persistence.EntityNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 
 @Service
@@ -24,10 +24,13 @@ public class WorkoutServiceImpl implements WorkoutService{
     @Autowired
     private final ExerciseService exerciseService;
 
+    private ModelMapper modelMapper;
+
 //    @Autowired
 //    private final Logger loginfo;
 
     public WorkoutServiceImpl(WorkoutRepository workoutRepository, ExerciseRepository exerciseRepository, ExerciseService exerciseService) {
+        modelMapper=new ModelMapper();
         this.workoutRepository = workoutRepository;
         this.exerciseRepository = exerciseRepository;
         this.exerciseService = exerciseService;
@@ -71,3 +74,15 @@ public class WorkoutServiceImpl implements WorkoutService{
         workoutRepository.save(workout);
     }
 }
+
+
+//    public List<GetWorkoutDTO> getworkouts(){
+//        List<GetWorkoutDTO> listWorkoutDto=new ArrayList();
+//        Collection<Workout> workouts=findAll();
+//        for (Workout workout:workouts){
+//            GetWorkoutDTO workoutDTO=new GetWorkoutDTO();
+//            modelMapper.map(workout,workoutDTO);
+//            listWorkoutDto.add(workoutDTO);
+//        }
+//        return listWorkoutDto;
+//    }

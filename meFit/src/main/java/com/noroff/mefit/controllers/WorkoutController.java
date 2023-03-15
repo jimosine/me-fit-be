@@ -3,23 +3,25 @@ package com.noroff.mefit.controllers;
 import com.noroff.mefit.models.DTO.workout.ExerciseToWorkoutDTO;
 import com.noroff.mefit.models.DTO.workout.WorkoutPostDPO;
 import com.noroff.mefit.models.Workout;
-import com.noroff.mefit.services.workout.WorkoutService;
+import com.noroff.mefit.services.workout.WorkoutServiceImpl;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/workout")
 public class WorkoutController {
-    private final WorkoutService workoutService;
     private final ModelMapper mapper;
 
-    public WorkoutController(WorkoutService workoutService) {
-        this.workoutService = workoutService;
+    @Autowired
+    private WorkoutServiceImpl workoutService;
 
+    public WorkoutController() {
         mapper =new ModelMapper();
     }
 
@@ -48,9 +50,15 @@ public class WorkoutController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/exercise")
-    public ResponseEntity updateExercise(@PathVariable int id, ExerciseToWorkoutDTO exerciseToWorkoutDTO){
+    @PutMapping(value = "/{id}/exercise")
+    public ResponseEntity updateExercise(@PathVariable int id, @RequestBody ExerciseToWorkoutDTO exerciseToWorkoutDTO){
         workoutService.addExercises(id, exerciseToWorkoutDTO.getExerciseIds());
         return ResponseEntity.noContent().build();
     }
 }
+
+//    @GetMapping("/getworkout")
+//    public List<GetWorkoutDTO> getWorkoutDTOS(){
+//        return workoutService.getworkouts();
+//    }
+
